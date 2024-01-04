@@ -54,11 +54,11 @@ ALTER TABLE sibling ADD CONSTRAINT PK_sibling PRIMARY KEY (sibling_id);
 
 
 CREATE TABLE skill (
- instructor_skill_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ skill_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
  instr_instrument VARCHAR(20)
 );
 
-ALTER TABLE skill ADD CONSTRAINT PK_skill PRIMARY KEY (instructor_skill_id);
+ALTER TABLE skill ADD CONSTRAINT PK_skill PRIMARY KEY (skill_id);
 
 
 CREATE TABLE student (
@@ -245,7 +245,7 @@ ALTER TABLE instructor ADD CONSTRAINT FK_instructor_0 FOREIGN KEY (person_id) RE
 
 
 ALTER TABLE instructor_skill ADD CONSTRAINT FK_instructor_skill_0 FOREIGN KEY (instructor_id) REFERENCES instructor (instructor_id);
-ALTER TABLE instructor_skill ADD CONSTRAINT FK_instructor_skill_1 FOREIGN KEY (skill_id) REFERENCES skill (instructor_skill_id);
+ALTER TABLE instructor_skill ADD CONSTRAINT FK_instructor_skill_1 FOREIGN KEY (skill_id) REFERENCES skill (skill_id);
 
 
 ALTER TABLE rental ADD CONSTRAINT FK_rental_0 FOREIGN KEY (student_id) REFERENCES student (student_id);
@@ -267,3 +267,6 @@ ALTER TABLE booking ADD CONSTRAINT FK_booking_0 FOREIGN KEY (student_id) REFEREN
 ALTER TABLE booking ADD CONSTRAINT FK_booking_1 FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id);
 ALTER TABLE booking ADD CONSTRAINT FK_booking_2 FOREIGN KEY (instructor_id) REFERENCES instructor (instructor_id);
 ALTER TABLE booking ADD CONSTRAINT FK_booking_3 FOREIGN KEY (time_slot_id) REFERENCES time_slot (time_slot_id);
+
+
+
