@@ -49,3 +49,71 @@ VALUES
     ('Intermediate', 20);
 
 
+INSERT INTO public.instructor (person_id)
+VALUES
+    (21),
+    (22),
+    (23),
+    (24),
+    (25);
+
+
+INSERT INTO skill (instr_instrument)
+VALUES
+    ('Guitar'),
+    ('Violin'),
+    ('Piano'),
+    ('Saxophone'),
+    ('Drums'),
+    ('Trumpet'),
+    ('Flute');
+
+-- Inserting instructor skills for instructor with person_id 1
+INSERT INTO public.instructor_skill (instructor_id, skill_id)
+VALUES
+    (1, (SELECT skill_id FROM skill WHERE instr_instrument = 'Guitar')),
+    (1, (SELECT skill_id FROM skill WHERE instr_instrument = 'Violin')),
+    (1, (SELECT skill_id FROM skill WHERE instr_instrument = 'Piano'));
+
+-- Inserting instructor skills for instructor with person_id 2
+INSERT INTO public.instructor_skill (instructor_id, skill_id)
+VALUES
+    (2, (SELECT skill_id FROM skill WHERE instr_instrument = 'Saxophone')),
+    (2, (SELECT skill_id FROM skill WHERE instr_instrument = 'Drums')),
+    (2, (SELECT skill_id FROM skill WHERE instr_instrument = 'Trumpet'));
+
+-- Inserting instructor skills for instructor with person_id 3
+INSERT INTO public.instructor_skill (instructor_id, skill_id)
+VALUES
+    (3, (SELECT skill_id FROM skill WHERE instr_instrument = 'Flute')),
+    (3, (SELECT skill_id FROM skill WHERE instr_instrument = 'Piano')),
+    (3, (SELECT skill_id FROM skill WHERE instr_instrument = 'Guitar'));
+
+-- Inserting instructor skills for instructor with person_id 4
+INSERT INTO public.instructor_skill (instructor_id, skill_id)
+VALUES
+    (4, (SELECT skill_id FROM skill WHERE instr_instrument = 'Violin')),
+    (4, (SELECT skill_id FROM skill WHERE instr_instrument = 'Saxophone')),
+    (4, (SELECT skill_id FROM skill WHERE instr_instrument = 'Drums'));
+
+-- Inserting instructor skills for instructor with person_id 5
+INSERT INTO public.instructor_skill (instructor_id, skill_id)
+VALUES
+    (5, (SELECT skill_id FROM skill WHERE instr_instrument = 'Trumpet')),
+    (5, (SELECT skill_id FROM skill WHERE instr_instrument = 'Flute')),
+    (5, (SELECT skill_id FROM skill WHERE instr_instrument = 'Saxophone'));
+
+
+INSERT INTO public.inventory (instr_type, brand, fee, quantity) VALUES ('Guitar', 'Fender', 276, 3);
+INSERT INTO public.inventory (instr_type, brand, fee, quantity) VALUES ('Guitar', 'Gibson', 309, 2);
+INSERT INTO public.inventory (instr_type, brand, fee, quantity) VALUES ('Violin', 'Stradivarius', 686, 4);
+INSERT INTO public.inventory (instr_type, brand, fee, quantity) VALUES ('Violin', 'Stentor', 532, 2);
+INSERT INTO public.inventory (instr_type, brand, fee, quantity) VALUES ('Piano', 'Steinway', 467, 1);
+INSERT INTO public.inventory (instr_type, brand, fee, quantity) VALUES ('Saxophone', 'Selmer', 523, 3);
+INSERT INTO public.inventory (instr_type, brand, fee, quantity) VALUES ('Saxophone', 'Yamaha', 581, 3);
+INSERT INTO public.inventory (instr_type, brand, fee, quantity) VALUES ('Drums', 'Pearl', 375, 1);
+INSERT INTO public.inventory (instr_type, brand, fee, quantity) VALUES ('Trumpet', 'Yamaha', 248, 2);
+INSERT INTO public.inventory (instr_type, brand, fee, quantity) VALUES ('Trumpet', 'Bach', 481, 3);
+INSERT INTO public.inventory (instr_type, brand, fee, quantity) VALUES ('Flute', 'Yamaha', 370, 4);
+INSERT INTO public.inventory (instr_type, brand, fee, quantity) VALUES ('Flute', 'Gemeinhardt', 375, 2);
+
