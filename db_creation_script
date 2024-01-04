@@ -45,11 +45,26 @@ CREATE TABLE phone (
 ALTER TABLE phone ADD CONSTRAINT PK_phone PRIMARY KEY (person_id,phone);
 
 
+CREATE TABLE sibling (
+ sibling_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ student_id INT
+);
+
+ALTER TABLE sibling ADD CONSTRAINT PK_sibling PRIMARY KEY (sibling_id);
+
+
+CREATE TABLE skill (
+ instructor_skill_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ instr_instrument VARCHAR(20)
+);
+
+ALTER TABLE skill ADD CONSTRAINT PK_skill PRIMARY KEY (instructor_skill_id);
+
+
 CREATE TABLE student (
  student_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
  skill_level VARCHAR(12) NOT NULL,
- person_id INT NOT NULL,
- sibling_id INT
+ person_id INT NOT NULL
 );
 
 ALTER TABLE student ADD CONSTRAINT PK_student PRIMARY KEY (student_id);
@@ -57,8 +72,8 @@ ALTER TABLE student ADD CONSTRAINT PK_student PRIMARY KEY (student_id);
 
 CREATE TABLE time_slot (
  time_slot_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
- start_time TIME(10) NOT NULL,
- end_time TIME(10) NOT NULL,
+ start_time TIME(6) NOT NULL,
+ end_time TIME(6) NOT NULL,
  date DATE NOT NULL
 );
 
@@ -137,11 +152,18 @@ ALTER TABLE individual_lesson ADD CONSTRAINT PK_individual_lesson PRIMARY KEY (l
 
 CREATE TABLE instructor (
  instructor_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
- instr_knowl VARCHAR(500),
  person_id INT NOT NULL
 );
 
 ALTER TABLE instructor ADD CONSTRAINT PK_instructor PRIMARY KEY (instructor_id);
+
+
+CREATE TABLE instructor_skill (
+ instructor_id INT NOT NULL,
+ skill_id INT NOT NULL
+);
+
+ALTER TABLE instructor_skill ADD CONSTRAINT PK_instructor_skill PRIMARY KEY (instructor_id,skill_id);
 
 
 CREATE TABLE rental (
@@ -161,6 +183,14 @@ CREATE TABLE salary (
 );
 
 ALTER TABLE salary ADD CONSTRAINT PK_salary PRIMARY KEY (salary_id);
+
+
+CREATE TABLE sibling_ref (
+ student_id INT NOT NULL,
+ sibling_id INT NOT NULL
+);
+
+ALTER TABLE sibling_ref ADD CONSTRAINT PK_sibling_ref PRIMARY KEY (student_id,sibling_id);
 
 
 CREATE TABLE available_instructors (
@@ -188,7 +218,6 @@ ALTER TABLE phone ADD CONSTRAINT FK_phone_0 FOREIGN KEY (person_id) REFERENCES p
 
 
 ALTER TABLE student ADD CONSTRAINT FK_student_0 FOREIGN KEY (person_id) REFERENCES person (person_id);
-ALTER TABLE student ADD CONSTRAINT FK_student_1 FOREIGN KEY (sibling_id) REFERENCES student (student_id);
 
 
 ALTER TABLE billing ADD CONSTRAINT FK_billing_0 FOREIGN KEY (student_id) REFERENCES student (student_id);
@@ -215,11 +244,19 @@ ALTER TABLE individual_lesson ADD CONSTRAINT FK_individual_lesson_0 FOREIGN KEY 
 ALTER TABLE instructor ADD CONSTRAINT FK_instructor_0 FOREIGN KEY (person_id) REFERENCES person (person_id);
 
 
+ALTER TABLE instructor_skill ADD CONSTRAINT FK_instructor_skill_0 FOREIGN KEY (instructor_id) REFERENCES instructor (instructor_id);
+ALTER TABLE instructor_skill ADD CONSTRAINT FK_instructor_skill_1 FOREIGN KEY (skill_id) REFERENCES skill (instructor_skill_id);
+
+
 ALTER TABLE rental ADD CONSTRAINT FK_rental_0 FOREIGN KEY (student_id) REFERENCES student (student_id);
 ALTER TABLE rental ADD CONSTRAINT FK_rental_1 FOREIGN KEY (instrument_id) REFERENCES instrument (instrument_id);
 
 
 ALTER TABLE salary ADD CONSTRAINT FK_salary_0 FOREIGN KEY (instructor_id) REFERENCES instructor (instructor_id);
+
+
+ALTER TABLE sibling_ref ADD CONSTRAINT FK_sibling_ref_0 FOREIGN KEY (student_id) REFERENCES student (student_id);
+ALTER TABLE sibling_ref ADD CONSTRAINT FK_sibling_ref_1 FOREIGN KEY (sibling_id) REFERENCES sibling (sibling_id);
 
 
 ALTER TABLE available_instructors ADD CONSTRAINT FK_available_instructors_0 FOREIGN KEY (time_slot_id) REFERENCES time_slot (time_slot_id);
