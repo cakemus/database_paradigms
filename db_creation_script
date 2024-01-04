@@ -1,19 +1,12 @@
-CREATE TABLE instrument (
- instrument_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+CREATE TABLE inventory (
+ inventory_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ quantity INT,
+ instr_type VARCHAR(20) NOT NULL,
+ brand  VARCHAR(50) NOT NULL,
  fee DECIMAL(10) NOT NULL
 );
 
-ALTER TABLE instrument ADD CONSTRAINT PK_instrument PRIMARY KEY (instrument_id);
-
-
-CREATE TABLE inventory (
- instrument_id INT NOT NULL,
- quantity INT,
- instr_type VARCHAR(20) NOT NULL,
- brand  VARCHAR(50) NOT NULL
-);
-
-ALTER TABLE inventory ADD CONSTRAINT PK_inventory PRIMARY KEY (instrument_id);
+ALTER TABLE inventory ADD CONSTRAINT PK_inventory PRIMARY KEY (inventory_id);
 
 
 CREATE TABLE lesson (
@@ -166,6 +159,14 @@ CREATE TABLE instructor_skill (
 ALTER TABLE instructor_skill ADD CONSTRAINT PK_instructor_skill PRIMARY KEY (instructor_id,skill_id);
 
 
+CREATE TABLE instrument (
+ instrument_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ inventory_id INT
+);
+
+ALTER TABLE instrument ADD CONSTRAINT PK_instrument PRIMARY KEY (instrument_id);
+
+
 CREATE TABLE rental (
  rental_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
  student_id INT NOT NULL,
@@ -211,9 +212,6 @@ CREATE TABLE booking (
 ALTER TABLE booking ADD CONSTRAINT PK_booking PRIMARY KEY (student_id,lesson_id,instructor_id,time_slot_id);
 
 
-ALTER TABLE inventory ADD CONSTRAINT FK_inventory_0 FOREIGN KEY (instrument_id) REFERENCES instrument (instrument_id);
-
-
 ALTER TABLE phone ADD CONSTRAINT FK_phone_0 FOREIGN KEY (person_id) REFERENCES person (person_id);
 
 
@@ -248,6 +246,9 @@ ALTER TABLE instructor_skill ADD CONSTRAINT FK_instructor_skill_0 FOREIGN KEY (i
 ALTER TABLE instructor_skill ADD CONSTRAINT FK_instructor_skill_1 FOREIGN KEY (skill_id) REFERENCES skill (skill_id);
 
 
+ALTER TABLE instrument ADD CONSTRAINT FK_instrument_0 FOREIGN KEY (inventory_id) REFERENCES inventory (inventory_id);
+
+
 ALTER TABLE rental ADD CONSTRAINT FK_rental_0 FOREIGN KEY (student_id) REFERENCES student (student_id);
 ALTER TABLE rental ADD CONSTRAINT FK_rental_1 FOREIGN KEY (instrument_id) REFERENCES instrument (instrument_id);
 
@@ -267,6 +268,9 @@ ALTER TABLE booking ADD CONSTRAINT FK_booking_0 FOREIGN KEY (student_id) REFEREN
 ALTER TABLE booking ADD CONSTRAINT FK_booking_1 FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id);
 ALTER TABLE booking ADD CONSTRAINT FK_booking_2 FOREIGN KEY (instructor_id) REFERENCES instructor (instructor_id);
 ALTER TABLE booking ADD CONSTRAINT FK_booking_3 FOREIGN KEY (time_slot_id) REFERENCES time_slot (time_slot_id);
+
+
+
 
 
 
