@@ -130,7 +130,6 @@ ALTER TABLE instrument ADD CONSTRAINT PK_instrument PRIMARY KEY (instrument_id);
 
 CREATE TABLE lesson (
  lesson_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
- skill_level VARCHAR(20) NOT NULL,
  pricing_id INT NOT NULL,
  date DATE NOT NULL,
  start_time TIME(6) NOT NULL,
@@ -268,6 +267,9 @@ ALTER TABLE individual_lesson ADD CONSTRAINT FK_individual_lesson_0 FOREIGN KEY 
 
 ALTER TABLE instructor_lesson ADD CONSTRAINT FK_instructor_lesson_0 FOREIGN KEY (instructor_id) REFERENCES instructor (instructor_id);
 ALTER TABLE instructor_lesson ADD CONSTRAINT FK_instructor_lesson_1 FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id);
+
+
+
 
 
 
