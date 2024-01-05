@@ -175,7 +175,7 @@ ALTER TABLE student_lesson ADD CONSTRAINT PK_student_lesson PRIMARY KEY (student
 
 
 CREATE TABLE ensemble (
- lesson_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ lesson_id INT NOT NULL,
  min_students INT NOT NULL,
  max_students INT NOT NULL,
  genre  VARCHAR(20) NOT NULL
@@ -185,7 +185,7 @@ ALTER TABLE ensemble ADD CONSTRAINT PK_ensemble PRIMARY KEY (lesson_id);
 
 
 CREATE TABLE group_lesson (
- lesson_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ lesson_id INT NOT NULL,
  grp_min_students INT NOT NULL,
  grp_max_students INT NOT NULL,
  instrument VARCHAR(20) NOT NULL
@@ -195,7 +195,7 @@ ALTER TABLE group_lesson ADD CONSTRAINT PK_group_lesson PRIMARY KEY (lesson_id);
 
 
 CREATE TABLE individual_lesson (
- lesson_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ lesson_id INT NOT NULL,
  instrument VARCHAR(20) NOT NULL
 );
 
@@ -267,6 +267,7 @@ ALTER TABLE individual_lesson ADD CONSTRAINT FK_individual_lesson_0 FOREIGN KEY 
 
 ALTER TABLE instructor_lesson ADD CONSTRAINT FK_instructor_lesson_0 FOREIGN KEY (instructor_id) REFERENCES instructor (instructor_id);
 ALTER TABLE instructor_lesson ADD CONSTRAINT FK_instructor_lesson_1 FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id);
+
 
 
 
