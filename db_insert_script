@@ -271,16 +271,6 @@ INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (10, 'Violin
 INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (26, 'Drums');
 INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (30, 'Guitar');
 
-INSERT INTO public.group_lesson (lesson_id, grp_min_students, grp_max_students, instrument) VALUES (4, 8, 16, 'Drums');
-INSERT INTO public.group_lesson (lesson_id, grp_min_students, grp_max_students, instrument) VALUES (5, 5, 10, 'Violin');
-INSERT INTO public.group_lesson (lesson_id, grp_min_students, grp_max_students, instrument) VALUES (6, 7, 12, 'Flute');
-INSERT INTO public.group_lesson (lesson_id, grp_min_students, grp_max_students, instrument) VALUES (13, 6, 16, 'Flute');
-INSERT INTO public.group_lesson (lesson_id, grp_min_students, grp_max_students, instrument) VALUES (14, 8, 17, 'Flute');
-INSERT INTO public.group_lesson (lesson_id, grp_min_students, grp_max_students, instrument) VALUES (15, 5, 10, 'Flute');
-INSERT INTO public.group_lesson (lesson_id, grp_min_students, grp_max_students, instrument) VALUES (22, 10, 19, 'Guitar');
-INSERT INTO public.group_lesson (lesson_id, grp_min_students, grp_max_students, instrument) VALUES (23, 7, 12, 'Flute');
-INSERT INTO public.group_lesson (lesson_id, grp_min_students, grp_max_students, instrument) VALUES (24, 10, 18, 'Flute');
-
 INSERT INTO public.ensemble (lesson_id, min_students, max_students, genre) VALUES (1, 10, 17, 'Rock');
 INSERT INTO public.ensemble (lesson_id, min_students, max_students, genre) VALUES (5, 11, 14, 'Pop');
 INSERT INTO public.ensemble (lesson_id, min_students, max_students, genre) VALUES (12, 11, 20, 'Pop');
