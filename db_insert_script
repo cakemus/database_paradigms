@@ -260,6 +260,58 @@ INSERT INTO public.ensemble (lesson_id, min_students, max_students, genre) VALUE
 INSERT INTO public.ensemble (lesson_id, min_students, max_students, genre) VALUES (33, 10, 12, 'Classical');
 INSERT INTO public.ensemble (lesson_id, min_students, max_students, genre) VALUES (38, 10, 16, 'Rock');
 INSERT INTO public.ensemble (lesson_id, min_students, max_students, genre) VALUES (40, 10, 20, 'Pop');
+INSERT INTO public.ensemble (lesson_id, min_students, max_students, genre) VALUES (41, 6, 9, 'Jazz');
+INSERT INTO public.ensemble (lesson_id, min_students, max_students, genre) VALUES (42, 7, 17, 'Blues');
+INSERT INTO public.ensemble (lesson_id, min_students, max_students, genre) VALUES (43, 8, 13, 'Jazz');
+
+/* for last query, lesson_id [33, 41, 42, 43] */
+
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (10, 33);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (9, 33);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (6, 33);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (2, 33);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (3, 33);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (13, 33);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (19, 33);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (12, 33);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (20, 33);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (16, 33);
+
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (14, 41);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (6, 41);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (18, 41);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (13, 41);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (3, 41);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (16, 41);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (15, 41);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (1, 41);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (9, 41);
+
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (17, 42);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (18, 42);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (12, 42);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (9, 42);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (19, 42);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (14, 42);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (1, 42);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (2, 42);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (4, 42);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (5, 42);
+    
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (15, 43);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (17, 43);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (13, 43);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (4, 43);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (11, 43);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (20, 43);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (14, 43);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (5, 43);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (10, 43);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (1, 43);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (18, 43);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (12, 43);
+INSERT INTO public.student_lesson (student_id, lesson_id) VALUES (2, 43);
+
 
 
 INSERT INTO public.sibling_ref (student_id, sibling_id) VALUES (1, 2);
