@@ -212,6 +212,17 @@ INSERT INTO public.lesson (pricing_id, date, start_time, end_time) VALUES (9, '2
 INSERT INTO public.lesson (pricing_id, date, start_time, end_time) VALUES (2, '2024-01-22', '09:00:00', '10:00:00');
 INSERT INTO public.lesson (pricing_id, date, start_time, end_time) VALUES (8, '2024-01-05', '09:30:00', '10:30:00');
 
+INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (2, 'Guitar');
+INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (4, 'Violin');
+INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (9, 'Violin');
+INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (10, 'Violin');
+INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (26, 'Drums');
+INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (30, 'Guitar');
+INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (32, 'Guitar');
+INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (35, 'Guitar');
+INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (36, 'Piano');
+INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (39, 'Violin');
+
 
 INSERT INTO public.group_lesson (lesson_id, grp_min_students, grp_max_students, instrument) VALUES (3, 5, 6, 'Drums');
 INSERT INTO public.group_lesson (lesson_id, grp_min_students, grp_max_students, instrument) VALUES (6, 7, 10, 'Violin');
@@ -234,16 +245,6 @@ INSERT INTO public.group_lesson (lesson_id, grp_min_students, grp_max_students, 
 INSERT INTO public.group_lesson (lesson_id, grp_min_students, grp_max_students, instrument) VALUES (34, 5, 6, 'Guitar');
 INSERT INTO public.group_lesson (lesson_id, grp_min_students, grp_max_students, instrument) VALUES (37, 7, 11, 'Violin');
 
-INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (2, 'Guitar');
-INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (4, 'Violin');
-INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (9, 'Violin');
-INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (10, 'Violin');
-INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (26, 'Drums');
-INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (30, 'Guitar');
-INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (32, 'Guitar');
-INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (35, 'Guitar');
-INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (36, 'Piano');
-INSERT INTO public.individual_lesson (lesson_id, instrument) VALUES (39, 'Violin');
 
 INSERT INTO public.ensemble (lesson_id, min_students, max_students, genre) VALUES (1, 10, 17, 'Rock');
 INSERT INTO public.ensemble (lesson_id, min_students, max_students, genre) VALUES (5, 11, 14, 'Pop');
@@ -285,5 +286,6 @@ INSERT INTO public.rental (student_id, rental_date, instrument_id) VALUES (14, '
 INSERT INTO public.rental (student_id, rental_date, instrument_id) VALUES (8, '2023-08-29', 8);
 INSERT INTO public.rental (student_id, rental_date, instrument_id) VALUES (9, '2023-04-26', 21);
 INSERT INTO public.rental (student_id, rental_date, instrument_id) VALUES (8, '2023-10-22', 14);
+
 
 
