@@ -1,0 +1,16 @@
+/* To generate the first table, showing how many lesson, both type and total there were every month during the year */
+SELECT 
+  EXTRACT(YEAR FROM date) AS year,
+  EXTRACT(MONTH FROM date) AS month,
+  COUNT(*) AS total_lessons,
+  COUNT(CASE WHEN pricing_id BETWEEN 1 AND 3 THEN 1 END) AS individual_lessons,
+  COUNT(CASE WHEN pricing_id BETWEEN 4 AND 6 THEN 1 END) AS group_lessons,
+  COUNT(CASE WHEN pricing_id BETWEEN 7 AND 9 THEN 1 END) AS ensemble_lessons
+FROM 
+  public.lesson
+WHERE 
+  EXTRACT(YEAR FROM date) = '2023'
+GROUP BY 
+  year, month
+ORDER BY 
+  year, month;
