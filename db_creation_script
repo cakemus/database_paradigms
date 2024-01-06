@@ -1,3 +1,12 @@
+CREATE TABLE discount (
+ discount_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ type_of_dc  VARCHAR(100) NOT NULL,
+ amount  DECIMAL(10) NOT NULL
+);
+
+ALTER TABLE discount ADD CONSTRAINT PK_discount PRIMARY KEY (discount_id);
+
+
 CREATE TABLE inventory (
  inventory_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
  instr_type VARCHAR(20) NOT NULL,
@@ -51,20 +60,10 @@ ALTER TABLE skill ADD CONSTRAINT PK_skill PRIMARY KEY (skill_id);
 
 CREATE TABLE student (
  student_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
- skill_level VARCHAR(12) NOT NULL,
  person_id INT NOT NULL
 );
 
 ALTER TABLE student ADD CONSTRAINT PK_student PRIMARY KEY (student_id);
-
-
-CREATE TABLE billing (
- billing_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
- amount  DECIMAL(10, 2) NOT NULL,
- student_id INT NOT NULL
-);
-
-ALTER TABLE billing ADD CONSTRAINT PK_billing PRIMARY KEY (billing_id);
 
 
 CREATE TABLE contact_person (
@@ -77,15 +76,12 @@ CREATE TABLE contact_person (
 ALTER TABLE contact_person ADD CONSTRAINT PK_contact_person PRIMARY KEY (student_id);
 
 
-CREATE TABLE discount (
- discount_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
- type_of_dc  VARCHAR(100) NOT NULL,
- amount  DECIMAL(10) NOT NULL,
- sibling_id INT,
- billing_id INT NOT NULL
+CREATE TABLE discount_ref (
+ discount_id INT NOT NULL,
+ pricing_id INT NOT NULL
 );
 
-ALTER TABLE discount ADD CONSTRAINT PK_discount PRIMARY KEY (discount_id);
+ALTER TABLE discount_ref ADD CONSTRAINT PK_discount_ref PRIMARY KEY (discount_id,pricing_id);
 
 
 CREATE TABLE email (
@@ -139,15 +135,6 @@ CREATE TABLE rental (
 );
 
 ALTER TABLE rental ADD CONSTRAINT PK_rental PRIMARY KEY (rental_id);
-
-
-CREATE TABLE salary (
- salary_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
- amount DECIMAL(10, 2) NOT NULL,
- instructor_id INT NOT NULL
-);
-
-ALTER TABLE salary ADD CONSTRAINT PK_salary PRIMARY KEY (salary_id);
 
 
 CREATE TABLE sibling_ref (
@@ -208,13 +195,11 @@ ALTER TABLE phone ADD CONSTRAINT FK_phone_0 FOREIGN KEY (person_id) REFERENCES p
 ALTER TABLE student ADD CONSTRAINT FK_student_0 FOREIGN KEY (person_id) REFERENCES person (person_id);
 
 
-ALTER TABLE billing ADD CONSTRAINT FK_billing_0 FOREIGN KEY (student_id) REFERENCES student (student_id);
-
-
 ALTER TABLE contact_person ADD CONSTRAINT FK_contact_person_0 FOREIGN KEY (student_id) REFERENCES student (student_id);
 
 
-ALTER TABLE discount ADD CONSTRAINT FK_discount_0 FOREIGN KEY (billing_id) REFERENCES billing (billing_id);
+ALTER TABLE discount_ref ADD CONSTRAINT FK_discount_ref_0 FOREIGN KEY (discount_id) REFERENCES discount (discount_id);
+ALTER TABLE discount_ref ADD CONSTRAINT FK_discount_ref_1 FOREIGN KEY (pricing_id) REFERENCES pricing (pricing_id);
 
 
 ALTER TABLE email ADD CONSTRAINT FK_email_0 FOREIGN KEY (person_id) REFERENCES person (person_id);
@@ -237,9 +222,6 @@ ALTER TABLE rental ADD CONSTRAINT FK_rental_0 FOREIGN KEY (student_id) REFERENCE
 ALTER TABLE rental ADD CONSTRAINT FK_rental_1 FOREIGN KEY (instrument_id) REFERENCES instrument (instrument_id);
 
 
-ALTER TABLE salary ADD CONSTRAINT FK_salary_0 FOREIGN KEY (instructor_id) REFERENCES instructor (instructor_id);
-
-
 ALTER TABLE sibling_ref ADD CONSTRAINT FK_sibling_ref_0 FOREIGN KEY (student_id) REFERENCES student (student_id);
 ALTER TABLE sibling_ref ADD CONSTRAINT FK_sibling_ref_1 FOREIGN KEY (sibling_id) REFERENCES student (student_id);
 
@@ -259,6 +241,8 @@ ALTER TABLE individual_lesson ADD CONSTRAINT FK_individual_lesson_0 FOREIGN KEY 
 
 ALTER TABLE instructor_lesson ADD CONSTRAINT FK_instructor_lesson_0 FOREIGN KEY (instructor_id) REFERENCES instructor (instructor_id);
 ALTER TABLE instructor_lesson ADD CONSTRAINT FK_instructor_lesson_1 FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id);
+
+
 
 
 
