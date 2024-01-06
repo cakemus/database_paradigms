@@ -50,14 +50,6 @@ CREATE TABLE pricing (
 ALTER TABLE pricing ADD CONSTRAINT PK_pricing PRIMARY KEY (pricing_id);
 
 
-CREATE TABLE skill (
- skill_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
- instr_instrument VARCHAR(20)
-);
-
-ALTER TABLE skill ADD CONSTRAINT PK_skill PRIMARY KEY (skill_id);
-
-
 CREATE TABLE student (
  student_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
  person_id INT NOT NULL
@@ -98,14 +90,6 @@ CREATE TABLE instructor (
 );
 
 ALTER TABLE instructor ADD CONSTRAINT PK_instructor PRIMARY KEY (instructor_id);
-
-
-CREATE TABLE instructor_skill (
- instructor_id INT NOT NULL,
- skill_id INT NOT NULL
-);
-
-ALTER TABLE instructor_skill ADD CONSTRAINT PK_instructor_skill PRIMARY KEY (instructor_id,skill_id);
 
 
 CREATE TABLE instrument (
@@ -208,10 +192,6 @@ ALTER TABLE email ADD CONSTRAINT FK_email_0 FOREIGN KEY (person_id) REFERENCES p
 ALTER TABLE instructor ADD CONSTRAINT FK_instructor_0 FOREIGN KEY (person_id) REFERENCES person (person_id);
 
 
-ALTER TABLE instructor_skill ADD CONSTRAINT FK_instructor_skill_0 FOREIGN KEY (instructor_id) REFERENCES instructor (instructor_id);
-ALTER TABLE instructor_skill ADD CONSTRAINT FK_instructor_skill_1 FOREIGN KEY (skill_id) REFERENCES skill (skill_id);
-
-
 ALTER TABLE instrument ADD CONSTRAINT FK_instrument_0 FOREIGN KEY (inventory_id) REFERENCES inventory (inventory_id);
 
 
@@ -241,6 +221,9 @@ ALTER TABLE individual_lesson ADD CONSTRAINT FK_individual_lesson_0 FOREIGN KEY 
 
 ALTER TABLE instructor_lesson ADD CONSTRAINT FK_instructor_lesson_0 FOREIGN KEY (instructor_id) REFERENCES instructor (instructor_id);
 ALTER TABLE instructor_lesson ADD CONSTRAINT FK_instructor_lesson_1 FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id);
+
+
+
 
 
 
