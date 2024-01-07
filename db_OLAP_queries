@@ -14,3 +14,26 @@ GROUP BY
   year, month
 ORDER BY 
   year, month;
+
+/* Generates table with sibling count of all students */
+
+WITH SiblingCounts AS (
+    SELECT 
+        s.student_id, 
+        COUNT(sr.sibling_id) AS sibling_count
+    FROM 
+        public.student s
+        LEFT JOIN public.sibling_ref sr ON s.student_id = sr.student_id
+    GROUP BY 
+        s.student_id
+)
+SELECT 
+    sibling_count, 
+    COUNT(student_id) AS number_of_students
+FROM 
+    SiblingCounts
+GROUP BY 
+    sibling_count
+ORDER BY 
+    sibling_count;
+
