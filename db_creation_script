@@ -222,6 +222,46 @@ ALTER TABLE individual_lesson ADD CONSTRAINT FK_individual_lesson_0 FOREIGN KEY 
 ALTER TABLE instructor_lesson ADD CONSTRAINT FK_instructor_lesson_0 FOREIGN KEY (instructor_id) REFERENCES instructor (instructor_id);
 ALTER TABLE instructor_lesson ADD CONSTRAINT FK_instructor_lesson_1 FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id);
 
+ALTER TABLE phone ADD CONSTRAINT FK_phone_person
+FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE;
+
+ALTER TABLE email ADD CONSTRAINT FK_email_person
+FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE;
+
+ALTER TABLE contact_person ADD CONSTRAINT FK_contact_person_student
+FOREIGN KEY (student_id) REFERENCES student (student_id) ON DELETE CASCADE;
+
+ALTER TABLE sibling_ref ADD CONSTRAINT FK_sibling_ref_student
+FOREIGN KEY (student_id) REFERENCES student (student_id) ON DELETE CASCADE;
+
+ALTER TABLE student_lesson ADD CONSTRAINT FK_student_lesson_student
+FOREIGN KEY (student_id) REFERENCES student (student_id) ON DELETE CASCADE;
+
+ALTER TABLE rental ADD CONSTRAINT FK_rental_student
+FOREIGN KEY (student_id) REFERENCES student (student_id) ON DELETE CASCADE;
+
+ALTER TABLE ensemble ADD CONSTRAINT FK_ensemble_lesson
+FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id) ON DELETE CASCADE;
+
+ALTER TABLE group_lesson ADD CONSTRAINT FK_group_lesson_lesson
+FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id) ON DELETE CASCADE;
+
+ALTER TABLE individual_lesson ADD CONSTRAINT FK_individual_lesson_lesson
+FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id) ON DELETE CASCADE;
+
+ALTER TABLE instructor_lesson ADD CONSTRAINT FK_instructor_lesson_lesson
+FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id) ON DELETE CASCADE;
+
+ALTER TABLE student_lesson ADD CONSTRAINT FK_student_lesson_lesson
+FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id) ON DELETE CASCADE;
+
+ALTER TABLE instructor_lesson ADD CONSTRAINT FK_instructor_lesson_instructor
+FOREIGN KEY (instructor_id) REFERENCES instructor (instructor_id) ON DELETE CASCADE;
+
+ALTER TABLE instrument ADD CONSTRAINT FK_instrument_inventory
+FOREIGN KEY (inventory_id) REFERENCES inventory (inventory_id) ON DELETE CASCADE;
+
+
 
 
 
