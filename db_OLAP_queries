@@ -37,3 +37,23 @@ GROUP BY
 ORDER BY 
     sibling_count;
 
+/* Generates table that with teachers that have worked more than a specific amount of lessons in a month */
+
+SELECT 
+    i.instructor_id,
+    p.first_name || ' ' || p.last_name AS instructor_name,
+    COUNT(l.lesson_id) AS total_lessons
+FROM 
+    public.instructor_lesson il
+    INNER JOIN public.lesson l ON il.lesson_id = l.lesson_id
+    INNER JOIN public.instructor i ON il.instructor_id = i.instructor_id
+    INNER JOIN public.person p ON i.person_id = p.person_id
+WHERE 
+    EXTRACT(MONTH FROM l.date) = EXTRACT(MONTH FROM CURRENT_DATE)
+    AND EXTRACT(YEAR FROM l.date) = EXTRACT(YEAR FROM CURRENT_DATE)
+GROUP BY 
+    i.instructor_id, instructor_name
+HAVING 
+    COUNT(l.lesson_id) > '1'
+ORDER BY 
+    total_lessons DESC;
