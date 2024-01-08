@@ -57,3 +57,34 @@ HAVING
     COUNT(l.lesson_id) > '1'
 ORDER BY 
     total_lessons DESC;
+
+
+/* Generate table with ensembles for next week, which genre and how many seats left */
+
+SELECT 
+    e.lesson_id,
+    e.genre,
+    CASE
+        WHEN EXTRACT(ISODOW FROM l.date) = 1 THEN 'Monday'
+        WHEN EXTRACT(ISODOW FROM l.date) = 2 THEN 'Tuesday'
+        WHEN EXTRACT(ISODOW FROM l.date) = 3 THEN 'Wednesday'
+        WHEN EXTRACT(ISODOW FROM l.date) = 4 THEN 'Thursday'
+        WHEN EXTRACT(ISODOW FROM l.date) = 5 THEN 'Friday'
+        WHEN EXTRACT(ISODOW FROM l.date) = 6 THEN 'Saturday'
+        WHEN EXTRACT(ISODOW FROM l.date) = 7 THEN 'Sunday'
+    END AS weekday,
+    CASE
+        WHEN COUNT(sl.student_id) >= e.max_students THEN 'Fully Booked'
+        WHEN e.max_students - COUNT(sl.student_id) <= 2 THEN '1-2 Seats Left'
+        ELSE 'More Seats Left'
+    END AS booking_status
+FROM 
+    public.ensemble e
+    JOIN public.lesson l ON e.lesson_id = l.lesson_id
+    LEFT JOIN public.student_lesson sl ON l.lesson_id = sl.lesson_id
+WHERE 
+    l.date >= CURRENT_DATE AND l.date < CURRENT_DATE + INTERVAL '1 week'
+GROUP BY 
+    e.lesson_id, e.genre, l.date
+ORDER BY 
+    EXTRACT(ISODOW FROM l.date);
