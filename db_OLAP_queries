@@ -1,4 +1,5 @@
-/* To generate the first table, showing how many lesson, both type and total there were every month during the year */
+/* Generate a materialized view for the first table, showing how many lesson, both type and total there were every month during the year.  */
+CREATE MATERIALIZED VIEW lesson_summary AS
 SELECT 
   EXTRACT(YEAR FROM date) AS year,
   EXTRACT(MONTH FROM date) AS month,
@@ -9,11 +10,18 @@ SELECT
 FROM 
   public.lesson
 WHERE 
-  EXTRACT(YEAR FROM date) = '2023'
+  EXTRACT(YEAR FROM date) = 2023
 GROUP BY 
-  year, month
+  EXTRACT(YEAR FROM date), EXTRACT(MONTH FROM date)
 ORDER BY 
-  year, month;
+  EXTRACT(YEAR FROM date), EXTRACT(MONTH FROM date);
+
+
+/* Display materialized view and order results */
+SELECT *
+FROM lesson_summary
+ORDER BY year, month;
+
 
 /* Generates table with sibling count of all students */
 
