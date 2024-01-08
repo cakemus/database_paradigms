@@ -91,7 +91,9 @@ FROM
     JOIN public.lesson l ON e.lesson_id = l.lesson_id
     LEFT JOIN public.student_lesson sl ON l.lesson_id = sl.lesson_id
 WHERE 
-    l.date >= CURRENT_DATE AND l.date < CURRENT_DATE + INTERVAL '1 week'
+    /* Hard coded date to make sure anyone gets same result as when I pulled the data. Commented out line below always checks upcoming week instead */
+    l.date >= '2024-01-08' AND l.date <= '2024-01-14'
+    /* l.date >= CURRENT_DATE AND l.date < CURRENT_DATE + INTERVAL '1 week' */
 GROUP BY 
     e.lesson_id, e.genre, l.date
 ORDER BY 
