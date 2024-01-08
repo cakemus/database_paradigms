@@ -17,10 +17,10 @@ ORDER BY
   EXTRACT(YEAR FROM date), EXTRACT(MONTH FROM date);
 
 
-/* Display materialized view and order results */
+/* Display materialized view and order results by month*/
 SELECT *
 FROM lesson_summary
-ORDER BY year, month;
+ORDER BY month;
 
 
 /* Generates table with sibling count of all students */
